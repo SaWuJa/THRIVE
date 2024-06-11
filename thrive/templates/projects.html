@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Project Repository
+{% endblock %}
+
+{% block content %}
+<!-- Main Project Repository Table -->
+<div class="container mt-4">
+    <h1>Project Repository</h1>
+    <a href="{{ url_for('add_project') }}" class="btn btn-success mb-2">Add New Project</a>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Table column headings for projects -->
+                <th scope="col">Project Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterating through each project passed to the template -->
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.project_name }}</td> <!-- Make sure to match the attribute names with your model -->
+                <td>{{ project.description | truncate(50, True, '...') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

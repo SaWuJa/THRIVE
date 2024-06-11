@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Register for the Project Repository{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <form method="POST" class="form-register" style="color:white;">
+        {{ form.hidden_tag() }}
+        <!-- Consider updating or replacing the icon to match the theme of your project repository -->
+        <img class="mb-4" src="https://res.cloudinary.com/dvteggr9n/image/upload/v1707060412/0bhQLf-LogoMakr_bs0eq9.png" alt="Project Repository Icon" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Create Your Account</h1>
+
+        <!-- Dynamic form fields for user registration -->
+        <div class="form-group">
+            {{ form.username.label(class="sr-only") }}
+            {{ form.username(class="form-control", placeholder="Username") }}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.email_address.label(class="sr-only") }}
+            {{ form.email_address(class="form-control", placeholder="Email Address") }}
+            {% if form.email_address.errors %}
+                {% for error in form.email_address.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.password1.label(class="sr-only") }}
+            {{ form.password1(class="form-control", placeholder="Password") }}
+            {% if form.password1.errors %}
+                {% for error in form.password1.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.password2.label(class="sr-only") }}
+            {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+            {% if form.password2.errors %}
+                {% for error in form.password2.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Navigation link for users who already have an account -->
+        <div class="mb-3">
+            Already have an account? <a href="{{ url_for('login_page') }}" class="btn btn-sm btn-secondary">Login</a>
+        </div>
+
+        {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+    </form>
+</div>
+{% endblock %}
